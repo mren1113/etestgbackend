@@ -6,7 +6,7 @@
 <jsp:include page="header.jsp" />
  
         <!-- /#header -->
-        <!-- Content -->
+        <!-- Content charan-->
         <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
