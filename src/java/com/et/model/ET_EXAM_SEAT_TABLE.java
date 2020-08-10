@@ -1,0 +1,151 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.et.model;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class ET_EXAM_SEAT_TABLE {
+
+   Database db;
+
+    public ET_EXAM_SEAT_TABLE(Database db) {
+        this.db = db;
+    }
+
+    public ET_EXAM_SEAT setAltmodel(Map<String, Object> row) {
+
+        if (row != null) {
+            ET_EXAM_SEAT getRow = ET_EXAM_SEAT.builder()
+                    .ID((String) row.get("ID"))
+                    .PERIOD((String) row.get("PERIOD"))
+                    .EXAM_DATE((String) row.get("EXAM_DATE"))
+                    .EXAM_SEAT((String) row.get("EXAM_SEAT"))
+                    .CREATE_DATE((String) row.get("CREATE_DATE"))
+                    .INSERT_USER((String) row.get("INSERT_USER"))
+                    .UPDATE_DATE((String) row.get("UPDATE_DATE"))
+                    .YEAR((String) row.get("YEAR"))
+                    .SEMESTER((String) row.get("SEMESTER"))
+                    .BUILD((String) row.get("BUILD"))
+                    .build();
+
+            return getRow;
+        } else {
+            return null;
+        }
+    }
+
+    public List<ET_EXAM_SEAT> findAll() {
+        List<ET_EXAM_SEAT> list = new ArrayList<ET_EXAM_SEAT>();
+        String sql = "SELECT ID,PERIOD"
+                + "TO_CHAR(EXAM_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')EXAM_DATE,EXAM_SEAT,"
+                + "TO_CHAR(CREATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')CREATE_DATE,INSERT_USER,"
+                + "TO_CHAR(UPDATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')UPDATE_DATE, "
+                + "YEAR,SEMESTER,BUILD FROM  ET_EXAM_SEAT  ";
+        List<Map<String, Object>> result = db.queryList(sql);
+
+        for (Map<String, Object> row : result) {
+
+            list.add(setAltmodel(row));
+        }
+        return list;
+    }
+    //end find 
+
+    public List<ET_EXAM_SEAT> findBylist(String x) {
+        List<ET_EXAM_SEAT> list = new ArrayList<ET_EXAM_SEAT>();
+         String sql = "SELECT ID,PERIOD"
+                + "TO_CHAR(EXAM_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')EXAM_DATE,EXAM_SEAT,"
+                + "TO_CHAR(CREATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')CREATE_DATE,INSERT_USER,"
+                + "TO_CHAR(UPDATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')UPDATE_DATE, "
+                + "YEAR,SEMESTER,BUILD FROM  ET_EXAM_SEAT  ";
+        List<Map<String, Object>> result = db.queryList(sql, x);
+
+        for (Map<String, Object> row : result) {
+
+            list.add(setAltmodel(row));
+        }
+        return list;
+    }
+    //end find 
+
+    public ET_EXAM_SEAT findbyData() {
+        String sql = "SELECT ID,PERIOD"
+                + "TO_CHAR(EXAM_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')EXAM_DATE,EXAM_SEAT,"
+                + "TO_CHAR(CREATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')CREATE_DATE,INSERT_USER,"
+                + "TO_CHAR(UPDATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')UPDATE_DATE, "
+                + "YEAR,SEMESTER,BUILD FROM  ET_EXAM_SEAT  ";
+        Map<String, Object> row = db.querySingle(sql);
+
+        return setAltmodel(row);
+
+    }
+    
+     public boolean insert(ET_EXAM_SEAT obj) {
+        // int colorNo = getColorNo();
+        String sql = " INSERT INTO ET_EXAM_SEAT(ID,PERIOD,EXAM_DATE,EXAM_SEAT,CREATE_DATE,YEAR,SEMESTER) "
+                +"VALUES(REQID_COURSE_OPEN.NEXTVAL,?,TO_DATE(?, 'mm/dd/yyyy hh24:mi:ss'),?,sysdate,?,?) ";
+
+        String[] genCol = {"ID"};
+        int chk = db.insertRc(genCol, sql, obj.getPERIOD(), obj.getEXAM_DATE(), obj.getEXAM_SEAT(), obj.getYEAR(), obj.getSEMESTER());
+
+        try {
+            if (chk > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+    }//end of insert
+
+    public Boolean update(ET_COURSE_OPEN objval) {
+        String sql = " ";
+        int chkUpdate = db.update(sql);
+        try {
+            return chkUpdate > 0;
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+    public Boolean delete(String year, String sem) {
+        String sql = "delete from ET_COURSE_OPEN where XX";
+        int chkDelete = db.remove2Val(sql, year, sem);
+        try {
+            if (chkDelete > 0) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+    }  //end of delete
+    
+    
+    
+     public int count() {
+        int maxusr = 0;
+        String sql = "select to_char(count(to_number(COURSE_NO)))STUDY_SEMESTER from ET_EXAM_SEAT";
+        Map<String, Object> row = db.querySingle(sql);
+
+        if (row != null) {
+            maxusr = Integer.parseInt((String) row.get("COURSE_NO"));
+            return maxusr;
+        } else {
+            return 0;
+        }
+    }//end get max no
+
+}
