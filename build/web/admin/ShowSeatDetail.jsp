@@ -46,24 +46,20 @@
                                     <table style="width:100%">
                                         <tr>
                                             <c:forEach items="${getBuildRow}" var = "getBuildRow" >
-                                            <th>${getBuildRow.ROW_EXAM}</th> 
+                                                <th>${getBuildRow.ROW_EXAM}</th> 
                                             </c:forEach>
                                         </tr>
-                                       
-         
                                         <tr> 
-                                                
+                                            <td>${tmpnumRowSeat[21]}</td> 
+                                        </tr>
 
-                                                <td>${tmpnumRowSeat[21]}</td> 
-                                         </tr>
-                                       
                                     </table>
                                 </div>
 
                             </div>
                             <div class="row" style="margin-top: 20px;"> 
                                 <div class="col-12" style="text-align: center;">
-                                    <button type="submit" class="btn btn-dark" ><i class="fa fa-save"></i> Download file</button> 
+                                    <button type="submit" class="btn btn-dark" ><i class="fa fa-save"></i>Download file</button> 
                                     <button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancle </button> 
                                 </div>
 

@@ -73,6 +73,7 @@ public class ET_REGIS_RU24_TABLE {
     }
     //end find 
     
+    
      public List<ET_REGIS_RU24> findBySelectDate(String year,String sem,String examdate) {
         List<ET_REGIS_RU24> list = new ArrayList<ET_REGIS_RU24>();
         String sql = "SELECT YEAR, SEMESTER, STD_CODE, TIME_NO, COURSE_NO, CREDIT, SECTION_NO, "

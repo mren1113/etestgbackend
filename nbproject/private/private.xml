@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Charan/Github/etestgbackend/src/java/com/et/control/GenerateSeat.java</file>
+            <file>file:/D:/Charan/Github/etestgbackend/web/admin/Genstdc.jsp</file>
+            <file>file:/D:/Charan/Github/etestgbackend/src/java/com/et/model/ET_ROW_SEAT_ORDER_TABLE.java</file>
+            <file>file:/D:/Charan/Github/etestgbackend/src/java/com/et/control/ExportETSTDC.java</file>
+            <file>file:/D:/Charan/Github/etestgbackend/src/java/com/et/control/genfiles/GenETSTDC.java</file>
+        </group>
     </open-files>
 </project-private>

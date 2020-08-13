@@ -72,7 +72,25 @@ public class ET_ROW_SEAT_ORDER_TABLE {
         return setAltmodel(row);
 
     }
+    
+     public List<ET_ROW_SEAT_ORDER> findBySemYearDateForExportTextFile(String sem, String year,String datex) {
+        List<ET_ROW_SEAT_ORDER> list = new ArrayList<ET_ROW_SEAT_ORDER>();
+        String sql = "SELECT YEAR, SEMESTER,"
+                + "TO_CHAR(INSERT_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')INSERT_DATE,"
+                + " ROW_SEAT,STD_CODE, "
+                + "TO_CHAR(EXAM_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')EXAM_DATE,SECTION_NO, "
+                + " CREDIT,COURSE_NO,STATUS_COURSE "
+                + " FROM ET_ROW_SEAT_ORDER where EXAM_DATE = to_date('"+ datex +"','dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI') and "
+                + " YEAR = '"+ year +"' and SEMESTER = '"+ sem +"' ";
+        List<Map<String, Object>> result = db.queryList(sql);
 
+        for (Map<String, Object> row : result) {
+
+            list.add(setAltmodel(row));
+        }
+        return list;
+    }
+    
     public boolean insert(ET_ROW_SEAT_ORDER obj) {
         // int colorNo = getColorNo();
         String sql = "insert into ET_ROW_SEAT_ORDER(YEAR,SEMESTER,INSERT_DATE,ROW_SEAT,STD_CODE,EXAM_DATE,SECTION_NO,CREDIT,COURSE_NO,STATUS_COURSE) "
