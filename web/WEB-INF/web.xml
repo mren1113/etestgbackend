@@ -44,14 +44,14 @@
         <servlet-name>GenerateSeat</servlet-name>
         <servlet-class>com.et.control.GenerateSeat</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ExportETSTDC</servlet-name>
-        <servlet-class>com.et.control.ExportETSTDC</servlet-class>
-    </servlet>
-    <servlet>
+     <servlet>
         <servlet-name>GenETSTDC</servlet-name>
         <servlet-class>com.et.control.genfiles.GenETSTDC</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>GenETSTDC</servlet-name>
+        <url-pattern>/GenETSTDC</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -87,14 +87,6 @@
     <servlet-mapping>
         <servlet-name>GenerateSeat</servlet-name>
         <url-pattern>/GenerateSeat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ExportETSTDC</servlet-name>
-        <url-pattern>/ExportETSTDC</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GenETSTDC</servlet-name>
-        <url-pattern>/GenETSTDC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
