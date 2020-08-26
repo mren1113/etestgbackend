@@ -63,7 +63,6 @@
                                     <option value="3"> Section 3</option>
                                     <option value="4"> Section 4</option>
                                 </select>
-
                             </div> 
                         </div>
                         <div class="row" style="margin-top: 20px;"> 
