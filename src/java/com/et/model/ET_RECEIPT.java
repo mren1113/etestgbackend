@@ -65,4 +65,5 @@ public class ET_RECEIPT {
   private String FACULTY_NO;
   private String REF_KEY;
   private String REGIS_STATUS;
+  private String EXPIRE_DATE;
 }

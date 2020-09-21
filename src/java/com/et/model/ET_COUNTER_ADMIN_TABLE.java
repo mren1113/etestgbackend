@@ -20,7 +20,7 @@ public class ET_COUNTER_ADMIN_TABLE {
         this.db = db;
     }
 
-    public ET_COUNTER_ADMIN setAltmodel(Map<String, Object> row) {
+       public ET_COUNTER_ADMIN setAltmodel(Map<String, Object> row) {
 
         if (row != null) {
             ET_COUNTER_ADMIN getRow = ET_COUNTER_ADMIN.builder()
@@ -31,6 +31,7 @@ public class ET_COUNTER_ADMIN_TABLE {
                     .START_DATE((String) row.get("START_DATE"))
                     .END_DATE((String) row.get("END_DATE"))
                     .UPDATE_DATE((String) row.get("UPDATE_DATE"))
+                    .UPDATE_DATE((String) row.get("TYPE_COUNTER"))
                     .build();
 
             return getRow;
@@ -45,7 +46,7 @@ public class ET_COUNTER_ADMIN_TABLE {
                 + "TO_CHAR(START_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')START_DATE,"
                 + "TO_CHAR(END_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')END_DATE ,"
                 + "START_TIME, END_TIME,TYPE_COUNTER "
-                + "FROM  XINT_COUNTER_ADMIN  ";
+                + "FROM  ET_COUNTER_ADMIN  ";
         List<Map<String, Object>> result = db.queryList(sql);
 
         for (Map<String, Object> row : result) {

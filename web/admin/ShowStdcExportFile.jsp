@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">              
-                    <form method="post" action="/etestgbackend/GenETSTDC?Eport=after">
+                    <form method="post" action="/etestgbackend/GenETSTDC?Export=after">
                         <div class="row" style="margin-top: 20px;"> 
                             <div class="col-12" style="text-align: center;">
                                 <button type="submit" class="btn btn-dark" ><i class="fa fa-save"></i>Download file</button> 

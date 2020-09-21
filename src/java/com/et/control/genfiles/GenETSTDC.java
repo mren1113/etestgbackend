@@ -28,7 +28,7 @@ public class GenETSTDC extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         // Parame Export Text File
-        String CheckExportText = request.getParameter("Eport");
+        String CheckExportText = request.getParameter("Export");
         
         //stmt 
         String examdate = request.getParameter("examdate");
@@ -132,20 +132,6 @@ public class GenETSTDC extends HttpServlet {
 
         db.close();
 
-        /* PrintWriter out = response.getWriter();
-        try {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GenETSTDC</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GenETSTDC at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        } */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

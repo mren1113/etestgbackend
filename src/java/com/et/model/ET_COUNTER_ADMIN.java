@@ -23,4 +23,5 @@ public class ET_COUNTER_ADMIN {
     private String START_TIME;
     private String END_TIME;
     private String UPDATE_DATE;
+    private String TYPE_COUNTER;
 }

@@ -72,7 +72,6 @@
                                     <button type="submit" class="btn btn-dark" ><i class="fa fa-save"></i> Generate</button> 
                                     <button type="button" class="btn btn-danger"><i class="fa fa-close"></i> Cancle </button> 
                                 </div>
-
                             </div>
                         </div>
                     </form>

@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.et.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +36,7 @@ public class ET_EXAM_SEAT_TABLE {
 
     public List<ET_EXAM_SEAT> findAll() {
         List<ET_EXAM_SEAT> list = new ArrayList<ET_EXAM_SEAT>();
-        String sql = "SELECT ID,PERIOD"
+        String sql = "SELECT ID,PERIOD,"
                 + "TO_CHAR(EXAM_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')EXAM_DATE,EXAM_SEAT,"
                 + "TO_CHAR(CREATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')CREATE_DATE,INSERT_USER,"
                 + "TO_CHAR(UPDATE_DATE, 'dd/mm/yyyy', 'NLS_CALENDAR=''THAI BUDDHA'' NLS_DATE_LANGUAGE=THAI')UPDATE_DATE, "
@@ -106,9 +100,9 @@ public class ET_EXAM_SEAT_TABLE {
 
     }//end of insert
 
-    public Boolean update(ET_COURSE_OPEN objval) {
-        String sql = " ";
-        int chkUpdate = db.update(sql);
+    public Boolean update(ET_COURSE_OPEN objval, String sumSeat) {
+        String sql = "UPDATE ET_EXAM_SEAT SET EXAM_SEAT = ?";
+        int chkUpdate = db.update(sql, sumSeat);
         try {
             return chkUpdate > 0;
 
@@ -117,13 +111,43 @@ public class ET_EXAM_SEAT_TABLE {
         }
 
     }
+    
+    public Boolean updateSumSeat(String sumSeat) {
+        String sql = "UPDATE ET_EXAM_SEAT SET EXAM_SEAT = ?";
+        int chkUpdate = db.update(sql, sumSeat);
+        try {
+            return chkUpdate > 0;
 
-    public Boolean delete(String year, String sem) {
-        String sql = "delete from ET_COURSE_OPEN where XX";
-        int chkDelete = db.remove2Val(sql, year, sem);
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+    
+    public boolean checkDuplicate(String exam_date) {
+
+        String sql = "SELECT YEAR FROM ET_EXAM_SEAT WHERE EXAM_DATE = TO_DATE(?, 'mm/dd/yyyy hh24:mi:ss')";
+        Map<String, Object> row = db.querySingle(sql, exam_date);
+        
+        ET_EXAM_SEAT chk = setAltmodel(row);
+        
+        try {
+            if (chk != null) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }//end of check before insert
+    
+    public Boolean delete(String exam_date) {
+        String sql = "DELETE FROM ET_EXAM_SEAT WHERE EXAM_DATE = TO_DATE( ?, 'mm/dd/yyyy' )";
+        int chkDelete = db.remove(sql, exam_date);
         try {
             if (chkDelete > 0) {
-                return true;
+                return true;             
             } else {
                 return false;
             }
@@ -132,8 +156,6 @@ public class ET_EXAM_SEAT_TABLE {
             return false;
         }
     }  //end of delete
-    
-    
     
      public int count() {
         int maxusr = 0;

@@ -260,6 +260,10 @@ import lombok.Data;
         return update(sql, id,id2,id3,id4);
     }
     
+    public int remove4Val(String sql, String id, String id2, String id3, int id4) {
+        return update(sql, id,id2,id3,id4);
+    }
+    
     public int removeByid(String sql, int id) {
         return update(sql, id);
     }

@@ -58,6 +58,23 @@ public class ET_EXAM_DATE_TABLE {
         }
         return list;
     }
+    
+    public List<ET_EXAM_DATE> findAll2() {
+        List<ET_EXAM_DATE> list = new ArrayList<ET_EXAM_DATE>();
+        String sql = "SELECT YEAR,SEMESTER,"
+                + "TO_CHAR(EXAM_DATE, 'mm/dd/yyyy')EXAM_DATE,"
+                + "TO_CHAR(INSERT_DATE, 'mm/dd/yyyy')INSERT_DATE ,"
+                + "TO_CHAR(UPDATE_DATE, 'mm/dd/yyyy')UPDATE_DATE ,"
+                + "PERIOD, INSERT_USER,UPDATE_USER "
+                + "FROM  ET_EXAM_DATE  ";
+        List<Map<String, Object>> result = db.queryList(sql);
+
+        for (Map<String, Object> row : result) {
+
+            list.add(setAltmodel(row));
+        }
+        return list;
+    }
     //end find 
 
     public List<ET_EXAM_DATE> findAllExamDate() {
@@ -94,12 +111,12 @@ public class ET_EXAM_DATE_TABLE {
 
         return setAltmodel(row);
 
-    }
-
+    } 
+    
     public boolean insert(ET_EXAM_DATE obj) {
         // int colorNo = getColorNo();
         String sql = "insert into ET_EXAM_DATE(YEAR,SEMESTER,EXAM_DATE,PERIOD,INSERT_DATE) "
-                + " values(?,?,TO_DATE(?, 'mm/dd/yyyy hh24:mi:ss'),?,sysdate)";
+                + " values(?,?,TO_DATE(?, 'mm/dd/yyyy'),?,sysdate)";
 
         String[] genCol = {"EXAM_DATE"};
         int chk = db.insertRc(genCol, sql, obj.getYEAR(), obj.getSEMESTER(), obj.getEXAM_DATE(), obj.getPERIOD());
@@ -117,8 +134,7 @@ public class ET_EXAM_DATE_TABLE {
     }//end of insert
 
     public Boolean update(ET_EXAM_DATE objval) {
-        String sql = "update ET_EXAM_DATE set FISCAL_YEAR = ?,STUDY_YEAR = ?, STUDY_SEMESTER = ? ,"
-                + "UPDATE_DATE = SYSDATE";
+        String sql = "update ET_EXAM_DATE set FISCAL_YEAR = ?,STUDY_YEAR = ?, STUDY_SEMESTER = ? , UPDATE_DATE = SYSDATE";
         int chkUpdate = db.update(sql);
         try {
             return chkUpdate > 0;
@@ -128,13 +144,31 @@ public class ET_EXAM_DATE_TABLE {
         }
 
     }
+    
+    public boolean checkDuplicate(String exam_date) {
 
-    public Boolean delete(String year, String sem) {
-        String sql = "delete from XINT_COUNTER_ADMIN where STUDY_YEAR = ? and STUDY_SEMESTER = ?";
-        int chkDelete = db.remove2Val(sql, year, sem);
+        String sql = "SELECT YEAR FROM ET_EXAM_DATE WHERE EXAM_DATE = TO_DATE(?, 'mm/dd/yyyy hh24:mi:ss')";
+        Map<String, Object> row = db.querySingle(sql, exam_date);
+        
+        ET_EXAM_DATE chk = setAltmodel(row);
+        
+        try {
+            if (chk != null) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }//end of check before insert
+
+    public Boolean delete(String year, String sem, String exam_date) {
+        String sql = "DELETE FROM ET_EXAM_DATE WHERE YEAR = ? AND SEMESTER = ? AND EXAM_DATE = TO_DATE( ?, 'mm/dd/yyyy' )";
+        int chkDelete = db.remove3Val(sql, year, sem, exam_date);
         try {
             if (chkDelete > 0) {
-                return true;
+                return true;             
             } else {
                 return false;
             }

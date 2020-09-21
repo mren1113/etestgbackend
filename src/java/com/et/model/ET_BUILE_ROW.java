@@ -14,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ET_BUILE_ROW {
-     private String YEAR;
+    private String YEAR;
     private String SEMESTER;
     private String BUILD_NO;
     private String ROW_EXAM;

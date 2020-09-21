@@ -34,7 +34,13 @@
 
         <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
-        
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+            />
+
 
         <style>
             #weatherWidget .currentDesc {
@@ -78,10 +84,10 @@
                 cursor: pointer;
             }
             .scrollable-menu {
-    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
-}
+                height: auto;
+                max-height: 200px;
+                overflow-x: hidden;
+            }
         </style>
 
         <script>
@@ -130,21 +136,34 @@
                         <li class="menu-title"><i class="menu-icon fa fa-share"></i> Seat Managements</li><!-- /.menu-title -->
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Managements</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Managements Menu</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-fort-awesome"></i><a href="/etestgbackend/ShowSeatDetail">Seat Setting</a></li>
+                                <li>
+                                    <i class="menu-icon fa fa-fort-awesome"></i>
+                                    <a href="/etestgbackend/ShowSeatDetail">Seat Setting</a>
+                                </li>
+                                <li>
+                                    <i class="menu-icon fa fa-list-ol"></i>
+                                    <a href="/etestgbackend/SeatManagement">กำหนดแถวทสอบ</a>
+                                </li>
+                                <li>
+                                    <i class="menu-icon fa fa-calendar"></i>
+                                    <a href="/etestgbackend/DateManagement">กำหนดวัน และที่นั่งสอบ</a>
+                                </li>       
+                                <li>
+                                    <i class="menu-icon fa fa-money"></i>
+                                    <a href="/etestgbackend/ReceiptManagement">ปรับสถานะการชำระเงิน</a>
+                                </li>
                                 <!--li><i class="menu-icon ti-themify-logo"></i><a href="#">xxxxxxxxxx</a></li -->
                             </ul>
                         </li> 
                         <li class="menu-title"><i class="menu-icon fa fa-share-square-o"></i> Export Files</li><!-- /.menu-title -->
 
                         <li class="menu-item-has-children dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Export Files Menu</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-files-o"></i>Export Files Menu</a>
                             <ul class="sub-menu children dropdown-menu">
                                 <li><i class="menu-icon fa fa-file-text"></i><a href="ExportETSTDC">Text Files 1</a></li>
                                 <li><i class="menu-icon fa fa-file-text"></i><a href="GenETSTDC">Text Files 2</a></li>
-                                <li><i class="menu-icon fa fa-file-text"></i><a href="#">Text Files 3</a></li>
-                                <li><i class="menu-icon fa fa-file-text"></i><a href="#">Text Files 4</a></li>
                                 <!--li><i class="menu-icon ti-themify-logo"></i><a href="#">xxxxxxxxxx</a></li -->
                             </ul>
                         </li> 

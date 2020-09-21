@@ -44,9 +44,57 @@
         <servlet-name>GenerateSeat</servlet-name>
         <servlet-class>com.et.control.GenerateSeat</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>GenETSTDC</servlet-name>
         <servlet-class>com.et.control.genfiles.GenETSTDC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeatManagement</servlet-name>
+        <servlet-class>com.et.control.mangement.SeatManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeatManagementDelete</servlet-name>
+        <servlet-class>com.et.control.mangement.SeatManagementDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeatManagementInsert</servlet-name>
+        <servlet-class>com.et.control.mangement.SeatManagementInsert</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeatManagementUpdate</servlet-name>
+        <servlet-class>com.et.control.mangement.SeatManagementUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DateManagement</servlet-name>
+        <servlet-class>com.et.control.mangement.DateManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DateManagementInsert</servlet-name>
+        <servlet-class>com.et.control.mangement.DateManagementInsert</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DateManagementDelete</servlet-name>
+        <servlet-class>com.et.control.mangement.DateManagementDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReceiptManagement</servlet-name>
+        <servlet-class>com.et.control.mangement.ReceiptManagement</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReceiptManagementUpdate</servlet-name>
+        <servlet-class>com.et.control.mangement.ReceiptManagementUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSlipt</servlet-name>
+        <servlet-class>com.et.slip.GetSlipt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestForm</servlet-name>
+        <servlet-class>com.et.testform.TestForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExportETSTDC</servlet-name>
+        <servlet-class>com.et.control.genfiles.ExportETSTDC</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GenETSTDC</servlet-name>
@@ -87,6 +135,54 @@
     <servlet-mapping>
         <servlet-name>GenerateSeat</servlet-name>
         <url-pattern>/GenerateSeat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatManagement</servlet-name>
+        <url-pattern>/SeatManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatManagementDelete</servlet-name>
+        <url-pattern>/SeatManagementDelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatManagementInsert</servlet-name>
+        <url-pattern>/SeatManagementInsert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeatManagementUpdate</servlet-name>
+        <url-pattern>/SeatManagementUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DateManagement</servlet-name>
+        <url-pattern>/DateManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DateManagementInsert</servlet-name>
+        <url-pattern>/DateManagementInsert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DateManagementDelete</servlet-name>
+        <url-pattern>/DateManagementDelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReceiptManagement</servlet-name>
+        <url-pattern>/ReceiptManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReceiptManagementUpdate</servlet-name>
+        <url-pattern>/ReceiptManagementUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSlipt</servlet-name>
+        <url-pattern>/GetSlipt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestForm</servlet-name>
+        <url-pattern>/TestForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExportETSTDC</servlet-name>
+        <url-pattern>/ExportETSTDC</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
