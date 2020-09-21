@@ -58,8 +58,8 @@ public class ExportETSTDC extends HttpServlet {
 
                 List<EXPORT_ET_STDC> ExportET_STDC = getExportET_STDC.findExportEtSTDCAllSection(examdate);
 
-                if (!ExportET_STDC.equals("") || ExportET_STDC != null) {
-                    System.out.println("ค้นข้อมูลทั้งหมด if" + ExportET_STDC);
+                if (!ExportET_STDC.isEmpty()) {
+
                     for (int i = 0; i < ExportET_STDC.size(); i++) {
                         ET_STDC et_stdc = new ET_STDC();
 
@@ -110,17 +110,16 @@ public class ExportETSTDC extends HttpServlet {
                         et_stdc.setStdc_score_M("000 ");
                         et_stdc.setStdc_score_F("000 ");
                         et_stdc.setStdc_score_chsum("0000");
-                        System.out.println(et_stdc);
+
                         lists.add(et_stdc);
                     }//end for
 
                 } else {
 
-                    System.out.println("ค้นข้อมูลทั้งหมด else" + ExportET_STDC);
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('วันที่สอบ หรือ คาบสอบที่เลือกไม่นักศึกษาลงทะเบียน!!!');");
-                    out.println("location='admin/Export-ETSTDC-Main.jsp';");
+                    out.println("alert('วันที่สอบ หรือ คาบสอบที่เลือกไม่มีนักศึกษาลงทะเบียน!!!');");
+                    out.println("location='ExportETSTDC';");
                     out.println("</script>");
 
                 }
@@ -128,13 +127,12 @@ public class ExportETSTDC extends HttpServlet {
 
                 List<EXPORT_ET_STDC> ExportET_STDC = getExportET_STDC.findExportEtSTDC(examdate, section);
 
-                if (!ExportET_STDC.equals("") || ExportET_STDC != null) {
-
-                    System.out.println("if" + ExportET_STDC);
+                if (!ExportET_STDC.isEmpty()) {
 
                     for (int i = 0; i < ExportET_STDC.size(); i++) {
+
                         ET_STDC et_stdc = new ET_STDC();
-//                System.out.println("ExportET_STDC.get(i)"+ExportET_STDC.get(i));
+
                         //--- เปลี่ยน พ.ศ. ให้เป็น ค.ศ. ก่อน 
                         final String TEMP_OLD_FORMAT = "dd/MM/yyyy";
                         final String TEMP_NEW_FORMAT = "yyyy-MM-dd";
@@ -182,21 +180,20 @@ public class ExportETSTDC extends HttpServlet {
                         et_stdc.setStdc_score_M("000 ");
                         et_stdc.setStdc_score_F("000 ");
                         et_stdc.setStdc_score_chsum("0000");
-                        System.out.println(et_stdc);
+                      
                         lists.add(et_stdc);
                     }//end for
 
                 } else {
-                    System.out.println("else" + ExportET_STDC);
                     PrintWriter out = response.getWriter();
                     out.println("<script type=\"text/javascript\">");
-                    out.println("alert('วันที่สอบ หรือ คาบสอบที่เลือกไม่นักศึกษาลงทะเบียน!!!');");
-                    out.println("location='admin/Export-ETSTDC-Main.jsp';");
+                    out.println("alert('วันที่สอบ หรือ คาบสอบที่เลือกไม่มีนักศึกษาลงทะเบียน!!!');");
+                    out.println("location='ExportETSTDC';");
                     out.println("</script>");
                 }
             }
-            System.out.println(lists);
-            if (!lists.equals("") ||lists != null) {
+
+            if (!lists.isEmpty()) {
 
                 response.setContentType("text/plain");
                 response.setHeader("Content-Disposition", "attachment; filename=\"ET_STDC.txt\"");
