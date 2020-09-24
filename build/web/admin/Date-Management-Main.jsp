@@ -55,7 +55,7 @@
                                     </label>
                                     <a class="btn btn-success"  
                                        style="float: right; width: 100px; margin: 0 26px 0 5px; border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); color: #fff;"
-                                       href="DateManagementInsert?Create=1">
+                                       href="/etestgbackend/DateManagementInsert?Create=1">
                                         <i class="fa fa-plus-square"></i> เพิ่ม
                                     </a>
                                     <br>
@@ -67,10 +67,9 @@
                                     <div class="col-12 table-responsive-sm">
 
                                         <table id="datatable" class="table table-striped table-hover table-bordered" style="border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);">
-                                            <thead class="thead-dark text-center">
+                                            <thead class="text-center"  style="background-color: #004085; color: #fff;">
                                                 <tr>
-                                                    <th scope="col">ปีการศึกษา</th>
-                                                    <th scope="col">ภาคการศึกษา</th>
+                                                    <th scope="col">ลำดับ</th>
                                                     <th scope="col">วันที่สอบ</th>   
                                                     <th scope="col">คาบสอบ</th>
                                                     <th scope="col">จำนวนที่นั่งสอบ</th>
@@ -82,17 +81,7 @@
 
                                                 <c:forEach items="${ExamSeat}" var = "ExamSeat" varStatus="count">                                                 
                                                     <tr>
-                                                        <td scope="row">${ExamSeat.YEAR}</td>
-                                                        <td>
-                                                            <c:choose>
-                                                                <c:when test = "${getCounterData.STUDY_SEMESTER == '3'}">
-                                                                    Summer
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    เทอม ${getCounterData.STUDY_SEMESTER}
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </td>
+                                                        <td scope="row">${count.count}</td>
                                                         <td>${ExamSeat.EXAM_DATE}</td>
                                                         <td>${ExamSeat.PERIOD}</td>
                                                         <td>${ExamSeat.EXAM_SEAT}</td>
@@ -101,7 +90,7 @@
                                                             <a type="button" class="btn btn-danger" 
                                                                style="border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); color: #fff;"
                                                                onclick="return confirm('คุณต้องการ ลบข้อมูลใช่หรือไม่?');"
-                                                               href="DateManagementDelete?Year=${ExamSeat.YEAR}&Semester=${ExamSeat.SEMESTER}&Exam_Date=${ExamSeat.EXAM_DATE}">
+                                                               href="/etestgbackend/DateManagementDelete?Year=${ExamSeat.YEAR}&Semester=${ExamSeat.SEMESTER}&Exam_Date=${ExamSeat.EXAM_DATE}">
                                                                 <i class="fa fa-trash"></i> ลบ 
                                                             </a>                                                            
                                                         </td>

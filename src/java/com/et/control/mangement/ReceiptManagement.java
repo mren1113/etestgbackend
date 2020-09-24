@@ -23,7 +23,8 @@ public class ReceiptManagement extends HttpServlet {
         
         // ----- Query สถานะการจ่ายเงิน เพื่อไปแสดง ---------------------------------- 
         ET_RECEIPT_TABLE getReceiptTable = new ET_RECEIPT_TABLE(db);
-        List<ET_RECEIPT> ReceiptData = getReceiptTable.findAll();  
+        List<ET_RECEIPT> ReceiptData = getReceiptTable.findAllToDisplay();  
+        System.out.println(ReceiptData);
         
         // ----- วัน/เดือน/ปี และภาคการศึกษา เพื่อไปแสดง ------------------------------- 
         request.setAttribute("getCounterData", getCounterData);

@@ -57,8 +57,8 @@
                                 <div class="col-2">
                                     <label for="sec">Select Section:</label>
                                     <select class="form-control" name="sec" required="true">
-                                        <option  value="">---select section---</option>
-                                        <option value="0"> -- ALL -- </option>
+                                        <option  value="">--- เลือกคาบสอบ ---</option>
+                                        <option value="0"> -- เลือกทั้งหทด -- </option>
                                         <option value="1"> Section 1</option>
                                         <option value="2"> Section 2</option>
                                         <option value="3"> Section 3</option>

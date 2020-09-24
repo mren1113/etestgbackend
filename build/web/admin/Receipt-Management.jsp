@@ -62,8 +62,10 @@
                                     <div class="col-12 table-responsive-sm">
 
                                         <table id="datatable" class="table table-striped table-hover table-bordered" style="border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);">
-                                            <thead class="thead-dark text-center">
+                                            <thead class="text-center" style="background-color: #004085; color: #fff;">
                                                 <tr>
+                                                    <th scope="col">ลำดับ</th>
+                                                    <th scope="col">ชื่อ-นามสุล</th>
                                                     <th scope="col">รหัสนักศึกษา</th>
                                                     <th scope="col">ภาคการศึกษา</th>
                                                     <th scope="col">ค่าลงทะเบียน</th>   
@@ -75,7 +77,9 @@
 
                                                 <c:forEach items="${ReceiptData}" var = "ReceiptData" varStatus="count">                                                 
                                                     <tr>
-                                                        <td scope="row">${ReceiptData.STD_CODE}</td>
+                                                        <td scope="row">${count.count}</td>
+                                                        <td>${ReceiptData.NAME_THAI}</td>
+                                                        <td>${ReceiptData.STD_CODE}</td>
                                                         <td>
                                                             <c:choose>
                                                                 <c:when test = "${ReceiptData.RECEIPT_SEMESTER == '3'}">
@@ -90,10 +94,10 @@
                                                         <td>
                                                             <c:choose>
                                                                 <c:when test = "${ReceiptData.RECEIPT_PAY_STATUS == 0}">
-                                                                    <font color="tomato">ยังไม่ชำระเงิน!</font>
+                                                                    ยังไม่ชำระเงิน!
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    <font color="green">ชำระเงินเรียบร้อยแล้ว</font>
+                                                                    ชำระเงินเรียบร้อยแล้ว
                                                                 </c:otherwise>
                                                             </c:choose>       
                                                         </td>
@@ -103,7 +107,7 @@
                                                                     <a type="button" class="btn btn-success" 
                                                                        style="border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);"
                                                                        onclick="return confirm('คุณต้องการ ปรับสถานะการชำระเงินเป็น ***ยังไม่ชำระเงิน!*** ใช่หรือไม่?');"
-                                                                       href="ReceiptManagementUpdate?receiptStdCode=${ReceiptData.STD_CODE}&receiptYear=${ReceiptData.RECEIPT_YEAR}&receiptSemester=${ReceiptData.RECEIPT_SEMESTER}&receiptPayStatus=${ReceiptData.RECEIPT_PAY_STATUS}&refKey=${ReceiptData.REF_KEY}">
+                                                                       href="/etestgbackend/ReceiptManagementUpdate?receiptStdCode=${ReceiptData.STD_CODE}&receiptYear=${ReceiptData.RECEIPT_YEAR}&receiptSemester=${ReceiptData.RECEIPT_SEMESTER}&receiptPayStatus=${ReceiptData.RECEIPT_PAY_STATUS}&refKey=${ReceiptData.REF_KEY}">
                                                                         <i class="fa fa-money"></i> ปรับสถานะ 
                                                                     </a>
                                                                 </c:when>
@@ -111,7 +115,7 @@
                                                                     <a type="button" class="btn btn-danger" 
                                                                        style="border-radius: 0; box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);"
                                                                        onclick="return confirm('คุณต้องการ ปรับสถานะการชำระเงินเป็น ***ชำระเงินเรียบร้อยแล้ว*** ใช่หรือไม่?');"
-                                                                       href="ReceiptManagementUpdate?receiptStdCode=${ReceiptData.STD_CODE}&receiptYear=${ReceiptData.RECEIPT_YEAR}&receiptSemester=${ReceiptData.RECEIPT_SEMESTER}&receiptPayStatus=${ReceiptData.RECEIPT_PAY_STATUS}&refKey=${ReceiptData.REF_KEY}">
+                                                                       href="/etestgbackend/ReceiptManagementUpdate?receiptStdCode=${ReceiptData.STD_CODE}&receiptYear=${ReceiptData.RECEIPT_YEAR}&receiptSemester=${ReceiptData.RECEIPT_SEMESTER}&receiptPayStatus=${ReceiptData.RECEIPT_PAY_STATUS}&refKey=${ReceiptData.REF_KEY}">
                                                                         <i class="fa fa-money"></i> ปรับสถานะ 
                                                                     </a>
                                                                 </c:otherwise>

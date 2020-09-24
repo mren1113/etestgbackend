@@ -39,7 +39,8 @@ public class ReceiptManagementUpdate extends HttpServlet {
         
         boolean checkUpdate;
 
-        if (receiptPayStatus.equals("1")) {
+        if (receiptPayStatus.equals("1")) { 
+            
             checkUpdate = getReceiptTable.updateReceiptPayStatus(ReceiptData, "0");
             
         } else {

@@ -96,6 +96,10 @@
         <servlet-name>ExportETSTDC</servlet-name>
         <servlet-class>com.et.control.genfiles.ExportETSTDC</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ExportETRU25et</servlet-name>
+        <servlet-class>com.et.control.genfiles.ExportETRU25et</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GenETSTDC</servlet-name>
         <url-pattern>/GenETSTDC</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>ExportETSTDC</servlet-name>
         <url-pattern>/ExportETSTDC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExportETRU25et</servlet-name>
+        <url-pattern>/ExportETRU25et</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

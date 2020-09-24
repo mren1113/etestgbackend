@@ -162,8 +162,8 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-files-o"></i>Export Files Menu</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><i class="menu-icon fa fa-file-text"></i><a href="ExportETSTDC">Text Files 1</a></li>
-                                <li><i class="menu-icon fa fa-file-text"></i><a href="GenETSTDC">Text Files 2</a></li>
+                                <li><i class="menu-icon fa fa-file-text"></i><a href="/etestgbackend/ExportETSTDC">ET_STDC</a></li>
+                                <li><i class="menu-icon fa fa-file-text"></i><a href="/etestgbackend/ExportETRU25et">RU25et</a></li>
                                 <!--li><i class="menu-icon ti-themify-logo"></i><a href="#">xxxxxxxxxx</a></li -->
                             </ul>
                         </li> 

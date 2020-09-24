@@ -26,6 +26,7 @@ public class ET_RECEIPT_TABLE {
 
         if (row != null) {
             ET_RECEIPT getRow = ET_RECEIPT.builder()
+                    .NAME_THAI((String) row.get("NAME_THAI"))
                     .FISCAL_YEAR((String) row.get("FISCAL_YEAR"))
                     .RECEIPT_NO((String) row.get("RECEIPT_NO"))
                     .STD_CODE((String) row.get("STD_CODE"))
@@ -101,6 +102,27 @@ public class ET_RECEIPT_TABLE {
         return list;
     }
     //end find 
+
+    public List<ET_RECEIPT> findAllToDisplay() {
+        List<ET_RECEIPT> list = new ArrayList<ET_RECEIPT>();
+        String sql = " SELECT A.FISCAL_YEAR,A.COUNTER_NO,RECEIPT_NO,A.STD_CODE,A.RECEIPT_YEAR,A.RECEIPT_SEMESTER,TO_CHAR(A.RECEIPT_DATE, 'mm/dd/yyyy')RECEIPT_DATE,A.RECEIPT_TIME,A.RECEIPT_PERIOD,"
+                + " A.TOTAL_AMOUNT,A.RECEIPT_TYPE,A.RECEIPT_STATUS,A.REGIONAL_NO,A.CASH_AMOUNT,A.CHEQUE_AMOUNT,A.CREDIT_AMOUNT,A.REGIS_METHOD,A.REGIS_CK,"
+                + " A.NEAR_GRADUATE,A.PAYMENT_CODE,A.ACCOUNT_NUMBER,A.BANK_FEE,A.RECEIPT_PAY_STATUS,A.REGIS_GROUP_NO,TO_CHAR(A.REGIS_DATE, 'mm/dd/yyyy')REGIS_DATE,A.TOTAL_AMOUNT_BANK,"
+                + " A.BANK_VAT,A.BANK_TOTAL,A.NOMATCH_MONEY,TO_CHAR(A.BANK_DATE, 'mm/dd/yyyy')BANK_DATE,A.ADD_PAY,TO_CHAR(A.ADD_BANK_DATE, 'mm/dd/yyyy')ADD_BANK_DATE,A.EXAM_LOCATION_NO,A.WAIVED_NO,WAIVED_CR,A.CASHIER_NO,A.USERID,"
+                + " TO_CHAR(A.UPDATE_DATE, 'mm/dd/yyyy')UPDATE_DATE,A.USERNAME,A.CREDITCARD_TYPE,A.CREDITCARD_FEE,A.POSTAL_AMOUNT,A.PAYMENT_TYPE,A.TIME_NO,A.CHK_GRADUATE_STATUS,A.SAVE_STATUS,"
+                + " TO_CHAR(A.STATUS_B_UPDATE_DATE, 'mm/dd/yyyy')STATUS_B_UPDATE_DATE,A.FACULTY_NO,A.REF_KEY,A.REGIS_STATUS,TO_CHAR(A.EXPIRE_DATE, 'mm/dd/yyyy')EXPIRE_DATE, B.NAME_THAI"
+                + " FROM ET_RECEIPT A"
+                + " LEFT JOIN DBBACH00.VM_STUDENT_MOBILE B"
+                + " ON A.STD_CODE = B.STD_CODE";
+        List<Map<String, Object>> result = db.queryList(sql);
+
+        for (Map<String, Object> row : result) {
+
+            list.add(setAltmodel(row));
+        }
+        return list;
+    }
+    //end find
 
     public List<ET_RECEIPT> findAllExamDate() {
         List<ET_RECEIPT> list = new ArrayList<ET_RECEIPT>();
@@ -221,33 +243,10 @@ public class ET_RECEIPT_TABLE {
     }
 
     public Boolean updateReceiptPayStatus(ET_RECEIPT objval, String changeReceiptPayStatus) {
-        String sql = "UPDATE ET_RECEIPT SET "
-                + "FISCAL_YEAR=?, COUNTER_NO=?, RECEIPT_NO=?, STD_CODE=?, RECEIPT_YEAR=?, RECEIPT_SEMESTER=?,"
-                + "RECEIPT_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS'),"
-                + "RECEIPT_TIME=?, RECEIPT_PERIOD=?, TOTAL_AMOUNT=?, RECEIPT_TYPE=?, RECEIPT_STATUS=?,"
-                + "REGIONAL_NO=?, CASH_AMOUNT=?, CHEQUE_AMOUNT=?, CREDIT_AMOUNT=?, REGIS_METHOD=?,"
-                + "REGIS_CK=?, NEAR_GRADUATE=?, PAYMENT_CODE=?, ACCOUNT_NUMBER=?, BANK_FEE=?,"
-                + "RECEIPT_PAY_STATUS=?, REGIS_GROUP_NO=?, REGIS_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS'), TOTAL_AMOUNT_BANK=?, BANK_VAT=?,"
-                + "BANK_TOTAL=?, NOMATCH_MONEY=?, BANK_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS'), ADD_PAY=?, ADD_BANK_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS'),"
-                + "EXAM_LOCATION_NO=?, WAIVED_NO=?, WAIVED_CR=?, CASHIER_NO=?, USERID=?,"
-                + "UPDATE_DATE=?, USERNAME=?, CREDITCARD_TYPE=?, CREDITCARD_FEE=?, POSTAL_AMOUNT=?,"
-                + "PAYMENT_TYPE=?, TIME_NO=?, CHK_GRADUATE_STATUS=?, SAVE_STATUS=?, STATUS_B_UPDATE_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS'),"
-                + "FACULTY_NO=?, REF_KEY=?, REGIS_STATUS=?, EXPIRE_DATE=TO_DATE(?,'mm/dd/yyyy HH24:MI:SS')"
+        String sql = "UPDATE ET_RECEIPT SET RECEIPT_PAY_STATUS = ?"
                 + "WHERE STD_CODE=? AND RECEIPT_YEAR=? AND RECEIPT_SEMESTER=? AND RECEIPT_PAY_STATUS=? AND REF_KEY = ?";
-        int chkUpdate = db.update(sql, objval.getFISCAL_YEAR(), objval.getCOUNTER_NO(), objval.getRECEIPT_NO(),
-                objval.getSTD_CODE(), objval.getRECEIPT_YEAR(), objval.getRECEIPT_SEMESTER(), objval.getRECEIPT_DATE(),
-                objval.getRECEIPT_TIME(), objval.getRECEIPT_PERIOD(), objval.getTOTAL_AMOUNT(), objval.getRECEIPT_TYPE(),
-                objval.getRECEIPT_STATUS(), objval.getREGIONAL_NO(), objval.getCASH_AMOUNT(), objval.getCHEQUE_AMOUNT(),
-                objval.getCREDIT_AMOUNT(), objval.getREGIS_METHOD(), objval.getREGIS_CK(), objval.getNEAR_GRADUATE(),
-                objval.getPAYMENT_CODE(), objval.getACCOUNT_NUMBER(), objval.getBANK_FEE(), changeReceiptPayStatus,
-                objval.getREGIS_GROUP_NO(), objval.getREGIS_DATE(), objval.getTOTAL_AMOUNT_BANK(), objval.getBANK_VAT(),
-                objval.getBANK_TOTAL(), objval.getNOMATCH_MONEY(), objval.getBANK_DATE(), objval.getADD_PAY(), objval.getADD_BANK_DATE(),
-                objval.getEXAM_LOCATION_NO(), objval.getWAIVED_NO(), objval.getWAIVED_CR(), objval.getCASHIER_NO(), objval.getUSERID(),
-                objval.getUPDATE_DATE(), objval.getUSERNAME(), objval.getCREDITCARD_TYPE(), objval.getCREDITCARD_FEE(), objval.getPOSTAL_AMOUNT(),
-                objval.getPAYMENT_TYPE(), objval.getTIME_NO(), objval.getCHK_GRADUATE_STATUS(), objval.getSAVE_STATUS(), objval.getSTATUS_B_UPDATE_DATE(),
-                objval.getFACULTY_NO(), objval.getREF_KEY(), objval.getREGIS_STATUS(), objval.getEXPIRE_DATE(), 
-                objval.getSTD_CODE(), objval.getRECEIPT_YEAR(),
-                objval.getRECEIPT_SEMESTER(), objval.getRECEIPT_PAY_STATUS(), objval.getREF_KEY());
+        int chkUpdate = db.update(sql, changeReceiptPayStatus, objval.getSTD_CODE(), objval.getRECEIPT_YEAR(), objval.getRECEIPT_SEMESTER(),
+                objval.getRECEIPT_PAY_STATUS(), objval.getREF_KEY());
         try {
             return chkUpdate > 0;
 
